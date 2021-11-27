@@ -1,0 +1,43 @@
+@model MvcFrilance.ViewModels.RegisterViewModel
+
+<h2>Регистрация</h2>
+
+<div class="col-md-4">
+    <form method="post" asp-controller="Account" asp-action="Register">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Login" class="control-label"></label><br />
+            <input asp-for="Login" class="form-control" />
+            <span asp-validation-for="Login" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" class="control-label"></label><br />
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PasswordConfirm" class="control-label"></label><br />
+            <input asp-for="PasswordConfirm" class="form-control" />
+            <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label><br />
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label><br />
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="radio" class="btn-check" name="UserRole" id="role1" value="true" autocomplete="off">
+            <label class="btn btn-secondary" for="role1">Client</label>
+            <input type="radio" class="btn-check" name="UserRole" id="role2" value="false" autocomplete="off">
+            <label class="btn btn-secondary" for="role2">Frilancer</label>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Регистрация" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
