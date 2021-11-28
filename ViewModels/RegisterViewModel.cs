@@ -6,7 +6,7 @@ namespace MvcFrilance.ViewModels
     {
         [Required]
         [StringLength(18, MinimumLength = 6)]
-        [RegularExpression(@"^\w+$")]
+        [RegularExpression(@"^[\w-._@+]+$")]
         [Display(Name = "Логин")]
         public string Login { get; set; }
         [Required]
@@ -22,13 +22,14 @@ namespace MvcFrilance.ViewModels
         public string PasswordConfirm { get; set; }
         [Required]
         [StringLength(30, MinimumLength = 4)]
-        [RegularExpression(@"^\w+$")]
-        [Display(Name = "Никнэйм")]
-        public string Name { get; set; }
+        [RegularExpression(@"^[\w-._@+]+$")]
+        [Display(Name = "Имя пользовеля (или псевдоним)")]
+        public string NickName { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Электронная почта")]
         public string Email { get; set; }
-        public bool IsFrelancer { get; set; }
+        [Display(Name = "Роль")]
+        public string UserRole { get; set; }
     }
 }

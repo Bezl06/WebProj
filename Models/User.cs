@@ -5,7 +5,7 @@ namespace MvcFrilance.Models
 {
     public class User : IdentityUser
     {
-        public string Login { get; set; }
+        public string NickName { get; set; }
         public List<Order> Orders { get; set; }
         public List<Review> Reviews { get; set; }
         public int FinishedOrders { get; set; }

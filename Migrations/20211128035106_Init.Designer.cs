@@ -12,7 +12,7 @@ using MvcFrilance.Data;
 namespace MvcFrilance.Migrations
 {
     [DbContext(typeof(FrilanceDbContext))]
-    [Migration("20211127185808_Init")]
+    [Migration("20211128035106_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -342,11 +342,11 @@ namespace MvcFrilance.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("Login")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("NegativeRatings")
                         .HasColumnType("int");
+
+                    b.Property<string>("NickName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)

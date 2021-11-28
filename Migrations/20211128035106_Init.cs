@@ -28,7 +28,7 @@ namespace MvcFrilance.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Login = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NickName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FinishedOrders = table.Column<int>(type: "int", nullable: false),
                     PositiveRatings = table.Column<int>(type: "int", nullable: false),
                     NegativeRatings = table.Column<int>(type: "int", nullable: false),

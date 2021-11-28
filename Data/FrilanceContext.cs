@@ -9,7 +9,7 @@ namespace MvcFrilance.Data
     {
         public DbSet<Order> Orders { get; set; }
         public DbSet<FrilancerAdditionalInfo> Frilancers { get; set; }
-        public DbSet<Speciality> Specialities { get; set; }
+        public DbSet<Spell> Spells { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public FrilanceDbContext(DbContextOptions<FrilanceDbContext> options) : base(options)
         {

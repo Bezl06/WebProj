@@ -17,6 +17,7 @@ builder.Services.AddIdentity<User, IdentityRole>(opt =>
         opt.Password.RequireUppercase = false;
         opt.Password.RequireDigit = false;
         opt.Password.RequiredUniqueChars = 0;
+        opt.User.RequireUniqueEmail = true;
     }).AddEntityFrameworkStores<FrilanceDbContext>();
 
 builder.Services.AddControllersWithViews();

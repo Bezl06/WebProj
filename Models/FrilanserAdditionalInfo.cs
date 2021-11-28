@@ -7,7 +7,7 @@ namespace MvcFrilance.Models
         public int Id { get; set; }
         public string Resume { get; set; }
 
-        public List<Speciality> Specialities { get; set; }
+        public List<Spell> Spells { get; set; }
         public List<Tag> Tags { get; set; }
 
         public string UserId { get; set; }

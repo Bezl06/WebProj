@@ -11,7 +11,7 @@ namespace MvcFrilance.Models
         [Required]
         public string Description { get; set; }
         [Required]
-        public Speciality OrderType { get; set; }
+        public Spell OrderType { get; set; }
         public DateTime CreateDate { get; set; }
         public int Views { get; set; }
         [Column(TypeName = "decimal(18,2)")]

@@ -21,9 +21,9 @@
             <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Name" class="control-label"></label><br />
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
+            <label asp-for="NickName" class="control-label"></label><br />
+            <input asp-for="NickName" class="form-control" />
+            <span asp-validation-for="NickName" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="Email" class="control-label"></label><br />
@@ -31,13 +31,17 @@
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <input type="radio" class="btn-check" name="UserRole" id="role1" value="true" autocomplete="off">
-            <label class="btn btn-secondary" for="role1">Client</label>
-            <input type="radio" class="btn-check" name="UserRole" id="role2" value="false" autocomplete="off">
-            <label class="btn btn-secondary" for="role2">Frilancer</label>
+            <label asp-for="UserRole" class="control-label"></label><br />
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="UserRole" id="btnradio1" value="Client">
+                <label class=" btn btn-outline-primary" for="btnradio1">Заказчик</label>
+
+                <input type="radio" class="btn-check" name="UserRole" id="btnradio2" value="Frilancer">
+                <label class="btn btn-outline-primary" for="btnradio2">Фрилансер</label>
+            </div>
         </div>
         <div class="form-group">
-            <input type="submit" value="Регистрация" class="btn btn-primary" />
+            <br /><input type="submit" value="Регистрация" class="btn btn-primary" />
         </div>
     </form>
 </div>
