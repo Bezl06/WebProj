@@ -227,12 +227,15 @@ namespace MvcFrilance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("OrderTypeSpellID")
+                    b.Property<string>("OrderType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("SpellID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("TypePrice")
                         .IsRequired()
@@ -246,7 +249,7 @@ namespace MvcFrilance.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderTypeSpellID");
+                    b.HasIndex("SpellID");
 
                     b.HasIndex("UserId");
 
@@ -490,17 +493,13 @@ namespace MvcFrilance.Migrations
 
             modelBuilder.Entity("MvcFrilance.Models.Order", b =>
                 {
-                    b.HasOne("MvcFrilance.Models.Spell", "OrderType")
+                    b.HasOne("MvcFrilance.Models.Spell", null)
                         .WithMany("Orders")
-                        .HasForeignKey("OrderTypeSpellID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SpellID");
 
                     b.HasOne("MvcFrilance.Models.User", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId");
-
-                    b.Navigation("OrderType");
 
                     b.Navigation("User");
                 });

@@ -1,0 +1,87 @@
+@model MvcFrilance.ViewModels.CreateOrderViewModel
+
+@{
+    ViewData["Title"] = "CreateOrder";
+}
+
+<h2>Редактирование</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="CreateOrder">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <br>
+            <div class="form-group">
+                <div class="input-group">
+                    <label asp-for="Price" class="input-group-text"></label>
+                    <input asp-for=" Price" class="form-control">
+                    <select class="input-group-text" asp-for="TypePrice">
+                        <option value="За час">За час</option>
+                        <option value="За проект">За проект</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <br>
+            <div class="form-group">
+                <select class="form-select" asp-for="OrderType" asp-items="ViewBag.Spells"></select>
+            </div>
+            <br>
+            <div id="mainDiv" class="form-group">
+                <label class="control-label">Требуемые ключевые навыки</label>
+                <button type="button" class="btn btn-success" id="addButton">+</button>
+            </div>
+            <datalist id="defaultTags">
+                @foreach (var item in ViewBag.DefaultTags)
+                {
+                    <option>@item.TagID</option>
+                }
+            </datalist>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+
+    var addButton = document.querySelector("#addButton");
+    var divMain = document.querySelector("#mainDiv")
+
+    function AddTag() {
+        let divController = document.createElement("div");
+        divController.setAttribute("class", "input-group sm mb-3");
+        let newInput = document.createElement("input");
+        newInput.setAttribute("placeholder", "Tag");
+        newInput.setAttribute("list", "defaultTags");
+        newInput.setAttribute("name", "tags");
+        newInput.setAttribute("minlength", "3");
+        newInput.setAttribute("pattern", "^[\\w_-#+]+$");
+        newInput.setAttribute("class", "form-control");
+        let newButton = document.createElement("button");
+        newButton.setAttribute("class", "btn btn-danger");
+        newButton.setAttribute("type", "button");
+        newButton.textContent = "-";
+        newButton.onclick = function (e) {
+            divMain.removeChild(divController);
+        }
+        divController.appendChild(newInput);
+        divController.appendChild(newButton);
+        divMain.appendChild(divController);
+        newInput.focus();
+    }
+
+    addButton.onclick = AddTag;
+
+</script>

@@ -7,14 +7,19 @@ namespace MvcFrilance.Models
     {
         public int Id { get; set; }
         [Required]
+        [Display(Name = "Название")]
         public string Name { get; set; }
         [Required]
+        [Display(Name = "Описание")]
         public string Description { get; set; }
         [Required]
-        public Spell OrderType { get; set; }
+        [Display(Name = "Сфера деятельности")]
+        public string OrderType { get; set; }
         public DateTime CreateDate { get; set; }
         public int Views { get; set; }
         [Column(TypeName = "decimal(18,2)")]
+        [DataType(DataType.Currency)]
+        [Display(Name = "Бюджет")]
         public decimal Price { get; set; }
         [Required]
         public string TypePrice { get; set; }

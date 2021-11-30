@@ -230,12 +230,13 @@ namespace MvcFrilance.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OrderTypeSpellID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    OrderType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Views = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     TypePrice = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    SpellID = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -246,11 +247,10 @@ namespace MvcFrilance.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Orders_Spells_OrderTypeSpellID",
-                        column: x => x.OrderTypeSpellID,
+                        name: "FK_Orders_Spells_SpellID",
+                        column: x => x.SpellID,
                         principalTable: "Spells",
-                        principalColumn: "SpellID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "SpellID");
                 });
 
             migrationBuilder.CreateTable(
@@ -382,9 +382,9 @@ namespace MvcFrilance.Migrations
                 filter: "[UserId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_OrderTypeSpellID",
+                name: "IX_Orders_SpellID",
                 table: "Orders",
-                column: "OrderTypeSpellID");
+                column: "SpellID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_UserId",

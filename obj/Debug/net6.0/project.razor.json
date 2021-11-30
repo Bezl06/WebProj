@@ -16313,6 +16313,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Lessons\\VS_Code\\Web\\MvcFrilance\\Views\\Client\\CreateOrder.cshtml",
+      "TargetPath": "Views\\Client\\CreateOrder.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Lessons\\VS_Code\\Web\\MvcFrilance\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
@@ -16320,6 +16325,11 @@
     {
       "FilePath": "d:\\Lessons\\VS_Code\\Web\\MvcFrilance\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Lessons\\VS_Code\\Web\\MvcFrilance\\Views\\Client\\OrderList.cshtml",
+      "TargetPath": "Views\\Client\\OrderList.cshtml",
       "FileKind": "mvc"
     },
     {

@@ -1,0 +1,35 @@
+@model List<Order>
+
+@{
+    ViewData["Title"] = "CreateOrder";
+}
+
+<h2>Редактирование</h2>
+
+<div class="list-group">
+    @foreach (var order in Model)
+    {
+        int days = (int)(DateTime.Now - order.CreateDate).TotalDays;
+        string interval = days == 0 ? "Today" : days == 1 ? "Yesterday" : (days.ToString() + " days ago");
+        <div>
+            <div class="btn-group">
+                <a asp-action="EditOrder" asp-route-id="@order.Id" class="btn btn-primary">Изменить</a>
+                <a asp-action="DeleteOrder" asp-route-id="@order.Id" class="btn btn-danger">Удалить</a>
+            </div>
+        </div>
+        <div class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">@order.Name</h5>
+                <small class="text-muted">@interval</small>
+            </div>
+            <p class="mb-1">@order.Description</p>
+        </div>
+        <div>
+            @foreach (var tag in order.Tags)
+            {
+                <span class="badge bg-primary">@tag.TagID</span>
+            }
+        </div>
+        <br>
+    }
+</div>
