@@ -1,15 +1,16 @@
-@model MvcFrilance.ViewModels.CreateOrderViewModel
+@model MvcFrilance.ViewModels.EditOrderViewModel
 
 @{
-    ViewData["Title"] = "CreateOrder";
+    ViewData["Title"] = "EditOrder";
 }
 
-<h2>Оформление заказа</h2>
+<h2>Редактирование заказа</h2>
 
 <div class="row">
     <div class="col-md-4">
-        <form method="post" asp-action="CreateOrder">
+        <form method="post" asp-action="EditOrder">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID">
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -40,6 +41,14 @@
             <div id="mainDiv" class="form-group">
                 <label class="control-label">Требуемые ключевые навыки</label>
                 <button type="button" class="btn btn-success" id="addButton">+</button>
+                @foreach (var item in Model.Tags)
+                {
+                    <div class="input-group sm mb-3">
+                        <input class="form-control" placeholder="Tag" list="defaultTags" name="Tags" minlength="3"
+                        pattern="^[\w_-#+]+$" value="@item" />
+                        <button class="btn btn-danger" type="button" id="removeButtons">-</button>
+                    </div>
+                }
             </div>
             <datalist id="defaultTags">
                 @foreach (var item in ViewBag.DefaultTags)
@@ -57,7 +66,15 @@
 <script>
 
     var addButton = document.querySelector("#addButton");
+    var removeButtons = document.querySelectorAll("#removeButtons");
     var divMain = document.querySelector("#mainDiv")
+
+    for (let i = 0; i < removeButtons.length; i++) {
+        let parNode = removeButtons[i].parentNode;
+        removeButtons[i].onclick = function (e) {
+            divMain.removeChild(parNode);
+        }
+    }
 
     function AddTag() {
         let divController = document.createElement("div");

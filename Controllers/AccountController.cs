@@ -72,7 +72,6 @@ namespace MvcFrilance.Controllers
             return View(new LoginViewModel { ReturnUrl = returnUrl });
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
@@ -97,7 +96,6 @@ namespace MvcFrilance.Controllers
             return View(model);
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await _signManager.SignOutAsync();
@@ -160,6 +158,8 @@ namespace MvcFrilance.Controllers
             }
             return View(model);
         }
+        [HttpPost]
+        [Authorize]
         public async Task<IActionResult> EditFrilancer(EditFrilancerModel model)
         {
             if (model.Tags.Count == 0 || model.Spells.Count == 0)

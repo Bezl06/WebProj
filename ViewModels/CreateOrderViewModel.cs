@@ -19,4 +19,8 @@ namespace MvcFrilance.ViewModels
         public string OrderType { get; set; }
         public List<string> Tags { get; set; } = new();
     }
+    public class EditOrderViewModel : CreateOrderViewModel
+    {
+        public int ID { get; set; }
+    }
 }

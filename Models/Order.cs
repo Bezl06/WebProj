@@ -24,7 +24,7 @@ namespace MvcFrilance.Models
         [Required]
         public string TypePrice { get; set; }
 
-        public List<Tag> Tags { get; set; }
+        public List<Tag> Tags { get; set; } = new();
 
 
         public string UserId { get; set; }

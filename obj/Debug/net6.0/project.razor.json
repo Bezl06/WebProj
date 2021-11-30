@@ -16353,6 +16353,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Lessons\\VS_Code\\Web\\MvcFrilance\\Views\\Client\\EditOrder.cshtml",
+      "TargetPath": "Views\\Client\\EditOrder.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Lessons\\VS_Code\\Web\\MvcFrilance\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
