@@ -13,6 +13,7 @@ namespace MvcFrilance.Models
         public int NegativeRatings { get; set; }
         public DateTime RegisterDate { get; set; }
         public DateTime LastOnline { get; set; }
+        public FrilancerAdditionalInfo FrilancerInfo { get; set; }
     }
     public class Review
     {

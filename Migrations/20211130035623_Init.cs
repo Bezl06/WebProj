@@ -55,29 +55,25 @@ namespace MvcFrilance.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Specialities",
+                name: "Spells",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    SpellID = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Specialities", x => x.Id);
+                    table.PrimaryKey("PK_Spells", x => x.SpellID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Tags",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    TagID = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tags", x => x.Id);
+                    table.PrimaryKey("PK_Tags", x => x.TagID);
                 });
 
             migrationBuilder.CreateTable(
@@ -234,7 +230,7 @@ namespace MvcFrilance.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OrderTypeId = table.Column<int>(type: "int", nullable: false),
+                    OrderTypeSpellID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Views = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -250,34 +246,34 @@ namespace MvcFrilance.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Orders_Specialities_OrderTypeId",
-                        column: x => x.OrderTypeId,
-                        principalTable: "Specialities",
-                        principalColumn: "Id",
+                        name: "FK_Orders_Spells_OrderTypeSpellID",
+                        column: x => x.OrderTypeSpellID,
+                        principalTable: "Spells",
+                        principalColumn: "SpellID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "FrilancerAdditionalInfoSpeciality",
+                name: "FrilancerAdditionalInfoSpell",
                 columns: table => new
                 {
                     FrilancersId = table.Column<int>(type: "int", nullable: false),
-                    SpecialitiesId = table.Column<int>(type: "int", nullable: false)
+                    SpellsSpellID = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FrilancerAdditionalInfoSpeciality", x => new { x.FrilancersId, x.SpecialitiesId });
+                    table.PrimaryKey("PK_FrilancerAdditionalInfoSpell", x => new { x.FrilancersId, x.SpellsSpellID });
                     table.ForeignKey(
-                        name: "FK_FrilancerAdditionalInfoSpeciality_Frilancers_FrilancersId",
+                        name: "FK_FrilancerAdditionalInfoSpell_Frilancers_FrilancersId",
                         column: x => x.FrilancersId,
                         principalTable: "Frilancers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_FrilancerAdditionalInfoSpeciality_Specialities_SpecialitiesId",
-                        column: x => x.SpecialitiesId,
-                        principalTable: "Specialities",
-                        principalColumn: "Id",
+                        name: "FK_FrilancerAdditionalInfoSpell_Spells_SpellsSpellID",
+                        column: x => x.SpellsSpellID,
+                        principalTable: "Spells",
+                        principalColumn: "SpellID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -286,11 +282,11 @@ namespace MvcFrilance.Migrations
                 columns: table => new
                 {
                     FrilancersId = table.Column<int>(type: "int", nullable: false),
-                    TagsId = table.Column<int>(type: "int", nullable: false)
+                    TagsTagID = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FrilancerAdditionalInfoTag", x => new { x.FrilancersId, x.TagsId });
+                    table.PrimaryKey("PK_FrilancerAdditionalInfoTag", x => new { x.FrilancersId, x.TagsTagID });
                     table.ForeignKey(
                         name: "FK_FrilancerAdditionalInfoTag_Frilancers_FrilancersId",
                         column: x => x.FrilancersId,
@@ -298,10 +294,10 @@ namespace MvcFrilance.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_FrilancerAdditionalInfoTag_Tags_TagsId",
-                        column: x => x.TagsId,
+                        name: "FK_FrilancerAdditionalInfoTag_Tags_TagsTagID",
+                        column: x => x.TagsTagID,
                         principalTable: "Tags",
-                        principalColumn: "Id",
+                        principalColumn: "TagID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -310,11 +306,11 @@ namespace MvcFrilance.Migrations
                 columns: table => new
                 {
                     OrdersId = table.Column<int>(type: "int", nullable: false),
-                    TagsId = table.Column<int>(type: "int", nullable: false)
+                    TagsTagID = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderTag", x => new { x.OrdersId, x.TagsId });
+                    table.PrimaryKey("PK_OrderTag", x => new { x.OrdersId, x.TagsTagID });
                     table.ForeignKey(
                         name: "FK_OrderTag_Orders_OrdersId",
                         column: x => x.OrdersId,
@@ -322,10 +318,10 @@ namespace MvcFrilance.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderTag_Tags_TagsId",
-                        column: x => x.TagsId,
+                        name: "FK_OrderTag_Tags_TagsTagID",
+                        column: x => x.TagsTagID,
                         principalTable: "Tags",
-                        principalColumn: "Id",
+                        principalColumn: "TagID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -369,24 +365,26 @@ namespace MvcFrilance.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FrilancerAdditionalInfoSpeciality_SpecialitiesId",
-                table: "FrilancerAdditionalInfoSpeciality",
-                column: "SpecialitiesId");
+                name: "IX_FrilancerAdditionalInfoSpell_SpellsSpellID",
+                table: "FrilancerAdditionalInfoSpell",
+                column: "SpellsSpellID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FrilancerAdditionalInfoTag_TagsId",
+                name: "IX_FrilancerAdditionalInfoTag_TagsTagID",
                 table: "FrilancerAdditionalInfoTag",
-                column: "TagsId");
+                column: "TagsTagID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Frilancers_UserId",
                 table: "Frilancers",
-                column: "UserId");
+                column: "UserId",
+                unique: true,
+                filter: "[UserId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_OrderTypeId",
+                name: "IX_Orders_OrderTypeSpellID",
                 table: "Orders",
-                column: "OrderTypeId");
+                column: "OrderTypeSpellID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_UserId",
@@ -394,9 +392,9 @@ namespace MvcFrilance.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderTag_TagsId",
+                name: "IX_OrderTag_TagsTagID",
                 table: "OrderTag",
-                column: "TagsId");
+                column: "TagsTagID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Review_UserId",
@@ -422,7 +420,7 @@ namespace MvcFrilance.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "FrilancerAdditionalInfoSpeciality");
+                name: "FrilancerAdditionalInfoSpell");
 
             migrationBuilder.DropTable(
                 name: "FrilancerAdditionalInfoTag");
@@ -449,7 +447,7 @@ namespace MvcFrilance.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Specialities");
+                name: "Spells");
         }
     }
 }

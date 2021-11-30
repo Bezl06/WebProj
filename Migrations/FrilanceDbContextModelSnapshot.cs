@@ -22,19 +22,19 @@ namespace MvcFrilance.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("FrilancerAdditionalInfoSpeciality", b =>
+            modelBuilder.Entity("FrilancerAdditionalInfoSpell", b =>
                 {
                     b.Property<int>("FrilancersId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SpecialitiesId")
-                        .HasColumnType("int");
+                    b.Property<string>("SpellsSpellID")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("FrilancersId", "SpecialitiesId");
+                    b.HasKey("FrilancersId", "SpellsSpellID");
 
-                    b.HasIndex("SpecialitiesId");
+                    b.HasIndex("SpellsSpellID");
 
-                    b.ToTable("FrilancerAdditionalInfoSpeciality");
+                    b.ToTable("FrilancerAdditionalInfoSpell");
                 });
 
             modelBuilder.Entity("FrilancerAdditionalInfoTag", b =>
@@ -42,12 +42,12 @@ namespace MvcFrilance.Migrations
                     b.Property<int>("FrilancersId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TagsId")
-                        .HasColumnType("int");
+                    b.Property<string>("TagsTagID")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("FrilancersId", "TagsId");
+                    b.HasKey("FrilancersId", "TagsTagID");
 
-                    b.HasIndex("TagsId");
+                    b.HasIndex("TagsTagID");
 
                     b.ToTable("FrilancerAdditionalInfoTag");
                 });
@@ -201,7 +201,9 @@ namespace MvcFrilance.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Frilancers");
                 });
@@ -225,8 +227,9 @@ namespace MvcFrilance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OrderTypeId")
-                        .HasColumnType("int");
+                    b.Property<string>("OrderTypeSpellID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -243,7 +246,7 @@ namespace MvcFrilance.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderTypeId");
+                    b.HasIndex("OrderTypeSpellID");
 
                     b.HasIndex("UserId");
 
@@ -277,34 +280,22 @@ namespace MvcFrilance.Migrations
                     b.ToTable("Review");
                 });
 
-            modelBuilder.Entity("MvcFrilance.Models.Speciality", b =>
+            modelBuilder.Entity("MvcFrilance.Models.Spell", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("SpellID")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.HasKey("SpellID");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Specialities");
+                    b.ToTable("Spells");
                 });
 
             modelBuilder.Entity("MvcFrilance.Models.Tag", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("TagID")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
+                    b.HasKey("TagID");
 
                     b.ToTable("Tags");
                 });
@@ -397,17 +388,17 @@ namespace MvcFrilance.Migrations
                     b.Property<int>("OrdersId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TagsId")
-                        .HasColumnType("int");
+                    b.Property<string>("TagsTagID")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("OrdersId", "TagsId");
+                    b.HasKey("OrdersId", "TagsTagID");
 
-                    b.HasIndex("TagsId");
+                    b.HasIndex("TagsTagID");
 
                     b.ToTable("OrderTag");
                 });
 
-            modelBuilder.Entity("FrilancerAdditionalInfoSpeciality", b =>
+            modelBuilder.Entity("FrilancerAdditionalInfoSpell", b =>
                 {
                     b.HasOne("MvcFrilance.Models.FrilancerAdditionalInfo", null)
                         .WithMany()
@@ -415,9 +406,9 @@ namespace MvcFrilance.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MvcFrilance.Models.Speciality", null)
+                    b.HasOne("MvcFrilance.Models.Spell", null)
                         .WithMany()
-                        .HasForeignKey("SpecialitiesId")
+                        .HasForeignKey("SpellsSpellID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -432,7 +423,7 @@ namespace MvcFrilance.Migrations
 
                     b.HasOne("MvcFrilance.Models.Tag", null)
                         .WithMany()
-                        .HasForeignKey("TagsId")
+                        .HasForeignKey("TagsTagID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -491,17 +482,17 @@ namespace MvcFrilance.Migrations
             modelBuilder.Entity("MvcFrilance.Models.FrilancerAdditionalInfo", b =>
                 {
                     b.HasOne("MvcFrilance.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .WithOne("FrilancerInfo")
+                        .HasForeignKey("MvcFrilance.Models.FrilancerAdditionalInfo", "UserId");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("MvcFrilance.Models.Order", b =>
                 {
-                    b.HasOne("MvcFrilance.Models.Speciality", "OrderType")
+                    b.HasOne("MvcFrilance.Models.Spell", "OrderType")
                         .WithMany("Orders")
-                        .HasForeignKey("OrderTypeId")
+                        .HasForeignKey("OrderTypeSpellID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -533,18 +524,20 @@ namespace MvcFrilance.Migrations
 
                     b.HasOne("MvcFrilance.Models.Tag", null)
                         .WithMany()
-                        .HasForeignKey("TagsId")
+                        .HasForeignKey("TagsTagID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MvcFrilance.Models.Speciality", b =>
+            modelBuilder.Entity("MvcFrilance.Models.Spell", b =>
                 {
                     b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("MvcFrilance.Models.User", b =>
                 {
+                    b.Navigation("FrilancerInfo");
+
                     b.Navigation("Orders");
 
                     b.Navigation("Reviews");

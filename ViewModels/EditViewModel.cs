@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using MvcFrilance.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace MvcFrilance.ViewModels
 {
@@ -26,7 +27,9 @@ namespace MvcFrilance.ViewModels
         [Display(Name = "Ваше описание")]
         [DataType(DataType.Text)]
         public string Description { get; set; }
-        public List<string> Tags { get; set; }
-        public List<string> Spells { get; set; }
+        public List<string> Tags { get; set; } = new();
+        public List<string> Spells { get; set; } = new();
+        public IEnumerable<Tag> DefaultTags { get; set; }
+        public IEnumerable<Spell> AllSpells { get; set; }
     }
 }
